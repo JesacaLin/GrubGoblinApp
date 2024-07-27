@@ -1,0 +1,55 @@
+<template>
+  <main class="grid-container">
+    <section class="hero-img">
+      <HeroImageComp />
+    </section>
+    <section class="auth-options">
+      <AuthOptionsComp />
+    </section>
+    <section class="perks-container">
+      <PerksContainerComp />
+    </section>
+  </main>
+</template>
+
+<script>
+import AuthOptionsComp from '@/components/AuthOptionsComp.vue'
+import HeroImageComp from '../components/HeroImageComp.vue'
+import PerksContainerComp from '../components/PerksContainerComp.vue'
+
+export default {
+  components: {
+    HeroImageComp,
+    AuthOptionsComp,
+    PerksContainerComp
+  },
+  data() {}
+}
+</script>
+<style scoped>
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Adjust the number of columns as needed */
+  grid-template-rows: auto auto; /* Adjust the number of rows as needed */
+  gap: 20px; /* Adjust the gap between grid items as needed */
+  grid-template-areas:
+    'hero-img auth-options'
+    'perks-container perks-container';
+}
+
+.hero-img {
+  grid-area: hero-img;
+}
+
+.auth-options {
+  grid-area: auth-options;
+}
+
+.perks-container {
+  grid-area: perks-container;
+}
+
+section {
+  border: solid 1px black;
+}
+</style>
