@@ -9,10 +9,10 @@
       spots. Share your culinary adventures with friends and unlock a world of flavor on a budget.
     </p>
     <section>
-      <button>+ Sign up!</button>
+      <button>+ Sign up</button>
       <span class="line"></span>
       <!-- Placeholder for the line -->
-      <button>+ Login!</button>
+      <button>+ Login</button>
     </section>
     <article>
       <a href="*">Social 1</a>

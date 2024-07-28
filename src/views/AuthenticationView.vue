@@ -29,9 +29,9 @@ export default {
 <style scoped>
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Adjust the number of columns as needed */
-  grid-template-rows: auto auto; /* Adjust the number of rows as needed */
-  gap: 20px; /* Adjust the gap between grid items as needed */
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto;
+  gap: 20px;
   grid-template-areas:
     'hero-img auth-options'
     'perks-container perks-container';
