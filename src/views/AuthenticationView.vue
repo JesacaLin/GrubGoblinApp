@@ -49,7 +49,7 @@ export default {
   grid-area: perks-container;
 }
 
-section {
+/* section {
   border: solid 1px black;
-}
+} */
 </style>
