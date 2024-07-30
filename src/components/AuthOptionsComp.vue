@@ -9,9 +9,9 @@
       spots. Share your culinary adventures with friends and unlock a world of flavor on a budget.
     </p>
     <section>
-      <button @click="showLogin = true">+ Login</button>
+      <button @click="showLogin = true">+ Login +</button>
       <span class="line"></span>
-      <button @click="showSignUp = true">+ Sign Up</button>
+      <button @click="showSignUp = true">+ Sign Up +</button>
     </section>
     <div v-if="showLogin" class="modal-backdrop" @click="closeModal">
       <div class="modal" @click.stop>

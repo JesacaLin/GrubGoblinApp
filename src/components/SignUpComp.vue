@@ -1,23 +1,27 @@
 <template>
   <main>
     <img src="/src/assets/logo-1.png" alt="site logo" />
+    <h1>Welcome!</h1>
     <button class="close-button" @click="$emit('close')">X</button>
-    <form>
-      <div>
-        <label for="first-name">First Name: </label>
-        <input type="text" id="first-name" name="first-name" required />
-      </div>
-      <div>
-        <label for="last-name">Last Name: </label>
-        <input type="text" id="last-name" name="last-name" required />
-      </div>
-      <div>
+    <form @submit.prevent="handleSignUp">
+      <!-- <div>
         <label for="username">Desired User Name: </label>
-        <input type="text" id="username" name="username" required />
-      </div>
+        <input type="text" id="username" name="username" v-model="username" required />
+      </div> -->
       <div>
         <label for="email">Email Address: </label>
-        <input type="email" id="email" name="email" required />
+        <input type="email" id="email" name="email" v-model="email" required />
+      </div>
+      <div>
+        <label for="password">Password: </label>
+        <input
+          type="text"
+          id="password"
+          name="password"
+          placeholder="At least 6 characters"
+          v-model="password"
+          required
+        />
       </div>
       <button class="submit-button" type="submit">Submit</button>
     </form>
@@ -25,8 +29,33 @@
 </template>
 
 <script>
+import supabase from '../service/SupabaseService'
 export default {
-  name: 'SignUpComp'
+  name: 'SignUpComp',
+
+  data() {
+    return {
+      // username: '',
+      email: '',
+      password: ''
+    }
+  },
+
+  methods: {
+    async handleSignUp() {
+      let { data, error } = await supabase.auth.signUp({
+        email: this.email,
+        password: this.password
+      })
+      if (error) {
+        console.error('Error signing up:', error.message)
+      } else {
+        console.log('Successfully sign up:', data)
+        // routerLink to HomeView
+        this.$router.push({ name: 'HomeView' })
+      }
+    }
+  }
 }
 </script>
 
@@ -59,6 +88,11 @@ form {
   gap: 1rem;
 }
 
+div {
+  display: flex;
+  flex-direction: column;
+}
+
 label {
   font-weight: bold;
 }
@@ -76,7 +110,8 @@ input {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  width: 50%;
+  width: 25%;
+  border-radius: 30px;
 }
 
 /* button:hover {

@@ -3,14 +3,14 @@
     <img src="/src/assets/logo-1.png" alt="site logo" />
     <h1>Welcome Back!</h1>
     <button class="close-button" @click="$emit('close')">X</button>
-    <form>
+    <form @submit.prevent="handleLogin">
       <div>
-        <label for="email">Email Address: </label>
-        <input type="email" id="email" name="email" required />
+        <label for="email">Email: </label>
+        <input type="email" id="email" name="email" v-model="email" required />
       </div>
       <div>
         <label for="password">Password: </label>
-        <input type="text" id="password" name="password" required />
+        <input type="text" id="password" name="password" v-model="password" required />
       </div>
       <button class="submit-button" type="submit">Submit</button>
     </form>
@@ -18,8 +18,32 @@
 </template>
 
 <script>
+import supabase from '../service/SupabaseService'
+
 export default {
-  name: 'LoginComp'
+  name: 'LoginComp',
+
+  data() {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    async handleLogin() {
+      let { data, error } = await supabase.auth.signInWithPassword({
+        email: this.email,
+        password: this.password
+      })
+      if (error) {
+        console.error('Error signing in:', error.message)
+      } else {
+        console.log('Successfully signed in:', data)
+        // routerLink to HomeView
+        this.$router.push({ name: 'HomeView' })
+      }
+    }
+  }
 }
 </script>
 
@@ -52,6 +76,11 @@ form {
   gap: 1rem;
 }
 
+div {
+  display: flex;
+  flex-direction: column;
+}
+
 label {
   font-weight: bold;
 }
@@ -69,7 +98,8 @@ input {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  width: 50%;
+  width: 25%;
+  border-radius: 30px;
 }
 
 /* button:hover {
