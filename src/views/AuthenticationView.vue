@@ -22,8 +22,7 @@ export default {
     HeroImageComp,
     AuthOptionsComp,
     PerksContainerComp
-  },
-  data() {}
+  }
 }
 </script>
 <style scoped>

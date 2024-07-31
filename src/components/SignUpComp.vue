@@ -4,10 +4,10 @@
     <h1>Welcome!</h1>
     <button class="close-button" @click="$emit('close')">X</button>
     <form @submit.prevent="handleSignUp">
-      <!-- <div>
+      <div>
         <label for="username">Desired User Name: </label>
         <input type="text" id="username" name="username" v-model="username" required />
-      </div> -->
+      </div>
       <div>
         <label for="email">Email Address: </label>
         <input type="email" id="email" name="email" v-model="email" required />
@@ -35,7 +35,7 @@ export default {
 
   data() {
     return {
-      // username: '',
+      username: '',
       email: '',
       password: ''
     }
@@ -43,14 +43,27 @@ export default {
 
   methods: {
     async handleSignUp() {
-      let { data, error } = await supabase.auth.signUp({
+      // Sign up the user in the auth.users table
+      let { data: signUpData, error } = await supabase.auth.signUp({
         email: this.email,
         password: this.password
       })
       if (error) {
         console.error('Error signing up:', error.message)
+        return
+      }
+
+      console.log('Sign up data:', signUpData)
+
+      // Insert the username into the app_user table
+      const { data: insertData, error: insertError } = await supabase
+        .from('app_user')
+        .insert([{ email: this.email, username: this.username, user_role: 'contributor' }])
+
+      if (insertError) {
+        console.error('Error inserting into app_user:', insertError.message)
       } else {
-        console.log('Successfully sign up:', data)
+        console.log('Successfully signed up and inserted into app_user:', insertData)
         // routerLink to HomeView
         this.$router.push({ name: 'HomeView' })
       }
