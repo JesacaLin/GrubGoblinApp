@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main id="auth-options">
     <img src="../assets/logo-1.png" alt="site logo" />
     <h5>Just your friendly neighborhood</h5>
     <h1>Grub Goblin</h1>
@@ -51,9 +51,11 @@ export default {
 </script>
 
 <style scoped>
-main {
-  text-align: center;
-  padding: 20px;
+#auth-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
 }
 
 img {
@@ -65,15 +67,11 @@ h5 {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 3.5rem;
 }
-button {
-  padding: 10px 30px;
-  border-radius: 30px;
-  border: none;
-  background-color: black;
-  color: white;
-  cursor: pointer;
+
+p {
+  text-align: center;
 }
 
 .line {
@@ -83,24 +81,6 @@ button {
   background-color: black;
   margin: 0 10px;
   vertical-align: middle;
-}
-
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 1rem 1.7rem;
 }
 </style>

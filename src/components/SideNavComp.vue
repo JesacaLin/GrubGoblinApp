@@ -1,14 +1,26 @@
 <template>
-  <main>
+  <main id="side-nav">
     <section>
       <img src="../assets/logo-1.png" alt="site logo" />
       <h1>Hi!</h1>
-      <i class="bi bi-house">Dashboard</i>
-      <i class="bi bi-suit-heart">My Deals</i>
-      <i class="bi bi-people">Community Deals</i>
+      <div>
+        <i class="bi bi-house"></i>
+        <span>Dashboard</span>
+      </div>
+      <div>
+        <i class="bi bi-suit-heart"></i>
+        <span>My Deals</span>
+      </div>
+      <div>
+        <i class="bi bi-people"></i>
+        <span>Community Deals</span>
+      </div>
     </section>
     <section>
-      <i class="bi bi-door-open">Logout</i>
+      <div>
+        <i class="bi bi-door-open"></i>
+        <span>Logout</span>
+      </div>
     </section>
   </main>
 </template>
@@ -20,17 +32,39 @@ export default {
 </script>
 
 <style scoped>
-main {
+#side-nav {
   background-color: lightgray;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 2rem;
+}
+
+main > section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+section > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 img {
-  width: 4rem;
+  width: 4.2rem;
 }
 
-.bi {
-  width: 3rem;
+div > .bi {
+  font-size: 2rem;
+}
+
+span {
+  font-size: 1rem;
+  text-align: center;
 }
 </style>

@@ -25,23 +25,39 @@
       </div>
       <button class="submit-button" type="submit">Submit</button>
     </form>
+    <div v-if="showEmailV" class="modal-backdrop" @click="closeModal">
+      <div class="modal" @click.stop>
+        <EmailVerificationComp @close="closeModal" />
+      </div>
+    </div>
   </main>
 </template>
 
 <script>
 import supabase from '../service/SupabaseService'
+import EmailVerificationComp from './EmailVerificationComp.vue'
+
 export default {
   name: 'SignUpComp',
+
+  components: {
+    EmailVerificationComp
+  },
 
   data() {
     return {
       username: '',
       email: '',
-      password: ''
+      password: '',
+      showEmailV: false
     }
   },
 
   methods: {
+    closeModal() {
+      this.showEmailV = false
+    },
+
     async handleSignUp() {
       // Sign up the user in the auth.users table
       let { data: signUpData, error } = await supabase.auth.signUp({
@@ -64,8 +80,16 @@ export default {
         console.error('Error inserting into app_user:', insertError.message)
       } else {
         console.log('Successfully signed up and inserted into app_user:', insertData)
-        // routerLink to HomeView
-        this.$router.push({ name: 'HomeView' })
+
+        // Emit close event to close the sign-up modal
+        this.$emit('close')
+
+        //TODO --> Ok, what if I take out the router? the sign up window will still close. Maybe the routing is disrupting the flow.
+        // Route to Auth view
+        this.$router.push({ name: 'Auth' })
+
+        // Show the email verification modal
+        this.showEmailV = true
       }
     }
   }
@@ -82,17 +106,6 @@ img {
   padding: 10px;
 }
 
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 25px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
 form {
   display: flex;
   flex-direction: column;
@@ -106,28 +119,9 @@ div {
   flex-direction: column;
 }
 
-label {
-  font-weight: bold;
-}
-
 input {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
-.submit-button {
-  padding: 0.5rem 1rem;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  width: 25%;
-  border-radius: 30px;
-}
-
-/* button:hover {
-  background-color: #0056b3;
-} */
 </style>

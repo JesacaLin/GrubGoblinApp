@@ -57,17 +57,6 @@ img {
   padding: 10px;
 }
 
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 25px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
 form {
   display: flex;
   flex-direction: column;
@@ -81,28 +70,9 @@ div {
   flex-direction: column;
 }
 
-label {
-  font-weight: bold;
-}
-
 input {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
-.submit-button {
-  padding: 0.5rem 1rem;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  width: 25%;
-  border-radius: 30px;
-}
-
-/* button:hover {
-    background-color: #0056b3;
-  } */
 </style>

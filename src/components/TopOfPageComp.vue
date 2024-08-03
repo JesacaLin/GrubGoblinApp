@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main id="top-of-page">
     <section>
       <form action="/search" method="GET">
         <input type="text" name="query" placeholder="Search..." />
@@ -20,4 +20,25 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+#top-of-page {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+section {
+  display: flex;
+  gap: 0.6rem;
+}
+
+input {
+  padding: 10px 30px;
+  border-radius: 30px;
+  border: solid 1px black;
+}
+
+section > .bi {
+  font-size: 1.8rem;
+}
+</style>

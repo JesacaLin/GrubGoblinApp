@@ -1,22 +1,23 @@
 <template>
-  <main>
+  <main id="home-view">
     <section class="side-nav-comp">
       <SideNavComp />
     </section>
     <section class="top-of-page-comp">
       <TopOfPageComp />
     </section>
-    <section class="miniCardContainer-1">
-      <MiniCardContainer sectionTitle="Title for Container 1" />
+    <section class="mini-card-container-1">
+      <RecentDealsContainer />
     </section>
-    <section class="miniCardContainer-2">
-      <MiniCardContainer sectionTitle="Title for Container 2" />
+    <section class="mini-card-container-2">
+      <MiniCardContainer sectionTitle="NEW COMMUNITY DEALS" />
     </section>
   </main>
 </template>
 
 <script>
 import MiniCardContainer from '@/components/MiniCardContainer.vue'
+import RecentDealsContainer from '@/components/RecentDealsContainer.vue'
 import SideNavComp from '../components/SideNavComp.vue'
 import TopOfPageComp from '@/components/TopOfPageComp.vue'
 
@@ -25,36 +26,38 @@ export default {
   components: {
     SideNavComp,
     TopOfPageComp,
-    MiniCardContainer
+    MiniCardContainer,
+    RecentDealsContainer
   }
 }
 </script>
 
 <style scoped>
-main {
+#home-view {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-row: auto;
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: auto;
   gap: 1rem;
   grid-template-areas:
-    'SideNavComp TopOfPageComp TopOfPageComp TopOfPageComp TopOfPageComp TopOfPageComp'
-    'SideNavComp MiniCardContainer MiniCardContainer MiniCardContainer MiniCardContainer MiniCardContainer'
-    'SideNavComp MiniCardContainer2 MiniCardContainer2 MiniCardContainer2 MiniCardContainer2 MiniCardContainer2';
+    'side-nav-comp top-of-page-comp'
+    'side-nav-comp mini-card-container-1'
+    'side-nav-comp mini-card-container-2';
+  width: 100%;
+}
 
-  .side-nav-comp {
-    grid-area: SideNavComp;
-  }
+.side-nav-comp {
+  grid-area: side-nav-comp;
+}
 
-  .top-of-page-comp {
-    grid-area: TopOfPageComp;
-  }
+.top-of-page-comp {
+  grid-area: top-of-page-comp;
+}
 
-  .miniCardContainer-1 {
-    grid-area: MiniCardContainer;
-  }
+.mini-card-container-1 {
+  grid-area: mini-card-container-1;
+}
 
-  .miniCardContainer-2 {
-    grid-area: MiniCardContainer2;
-  }
+.mini-card-container-2 {
+  grid-area: mini-card-container-2;
 }
 </style>

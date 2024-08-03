@@ -1,41 +1,58 @@
 <template>
-  <main>
+  <main id="mini-card-container">
     <section class="section-title">
       <h4>{{ sectionTitle }}</h4>
       <button>Show All ></button>
     </section>
-    <section class="mini-card-container"></section>
+    <section class="container-body">
+      <DealCardComp v-for="deal in deals" :key="deal.id" :deal="deal" />
+    </section>
   </main>
 </template>
 
-//need to make the text interchangeable.
-
 <script>
+import DealCardComp from './DealCardComp.vue'
+
 export default {
   name: 'MiniCardContainer',
 
+  components: {
+    DealCardComp
+  },
+
   props: {
+    deals: {
+      type: Array,
+      required: true
+    },
     sectionTitle: {
       type: String,
-      default: 'YOUR RESULTS'
+      required: true
     }
   }
 }
 </script>
-
 <style scoped>
-main {
+#mini-card-container {
   display: flex;
   flex-direction: column;
+  padding: 2rem;
+  gap: 1rem;
 }
 
-.mini-card-container {
+main > .container-body {
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem;
+  gap: 1rem;
   border: black solid 1px;
-  height: 300px;
+  height: 20rem;
   border-radius: 30px;
+  max-width: 100%;
+  /* overflow-x: auto; */
 }
 
-.section-title {
+main > .section-title {
   display: flex;
   justify-content: space-between;
 }
