@@ -2,7 +2,7 @@
   <main id="top-of-page">
     <section>
       <form action="/search" method="GET">
-        <input type="text" name="query" placeholder="Search..." />
+        <input type="text" name="query" id="input" placeholder="Search..." />
         <button type="submit">Search</button>
       </form>
       <button type="button">Locate Me!</button>
@@ -25,17 +25,19 @@ export default {
   display: flex;
   justify-content: space-between;
   padding: 2rem;
+  height: 100%;
 }
 
 section {
   display: flex;
-  gap: 0.6rem;
+  gap: 1rem;
 }
 
-input {
+#input {
   padding: 10px 30px;
   border-radius: 30px;
   border: solid 1px black;
+  margin-right: 1rem;
 }
 
 section > .bi {

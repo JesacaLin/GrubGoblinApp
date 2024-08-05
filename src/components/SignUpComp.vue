@@ -81,12 +81,14 @@ export default {
       } else {
         console.log('Successfully signed up and inserted into app_user:', insertData)
 
+        console.log('Sign in data:', signInData)
+
         // Emit close event to close the sign-up modal
         this.$emit('close')
 
         //TODO --> Ok, what if I take out the router? the sign up window will still close. Maybe the routing is disrupting the flow.
         // Route to Auth view
-        this.$router.push({ name: 'Auth' })
+        // this.$router.push({ name: 'Auth' })
 
         // Show the email verification modal
         this.showEmailV = true

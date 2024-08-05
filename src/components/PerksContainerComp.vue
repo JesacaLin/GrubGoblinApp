@@ -37,6 +37,7 @@
 <style scoped>
 h1 {
   text-align: center;
+  padding-bottom: 1rem;
 }
 main {
   display: flex;

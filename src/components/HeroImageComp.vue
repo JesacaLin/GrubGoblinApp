@@ -1,7 +1,7 @@
 <template>
   <main>
     <img src="../assets/hero-1.jpg" alt="dog pic" />
-    <h5>"I'll be having that"</h5>
+    <h3>"I'll be having that"</h3>
   </main>
 </template>
 

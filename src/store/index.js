@@ -1,27 +1,36 @@
-// store/index.js
 import { createStore } from 'vuex'
+import localStoragePlugin from './plugins/localStorage'
 
-export function createAppStore() {
-  return createStore({
-    state: {
-      token: null,
-      user: null,
-      userRoles: []
-    },
-    mutations: {
-      SET_LOGIN_INFO(state, { token, user, roles }) {
-        state.token = token
-        state.user = user
-        state.userRoles = roles
-      },
-      CLEAR_LOGIN_INFO(state) {
-        state.token = null
-        state.user = null
-        state.userRoles = []
-      }
-    }
-  })
+const savedState = JSON.parse(localStorage.getItem('store')) || {
+  token: null,
+  userEmail: null,
+  userName: null,
+  userRoles: []
 }
 
-const store = createAppStore()
+const store = createStore({
+  state: savedState,
+  mutations: {
+    SET_LOGIN_INFO(state, { token, userEmail, userName, roles }) {
+      state.token = token
+      state.userEmail = userEmail
+      state.userName = userName
+      state.userRoles = roles
+
+      console.log('SET_LOGIN_INFO mutation called with:', { token, userEmail, userName, roles })
+      console.log('Updated state:', state)
+    },
+    CLEAR_LOGIN_INFO(state) {
+      state.token = null
+      state.userEmail = null
+      state.userName = null
+      state.userRoles = []
+
+      console.log('CLEAR_LOGIN_INFO mutation called')
+      console.log('Updated state:', state)
+    }
+  },
+  plugins: [localStoragePlugin]
+})
+
 export default store

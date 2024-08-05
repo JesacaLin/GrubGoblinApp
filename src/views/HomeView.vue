@@ -10,7 +10,7 @@
       <RecentDealsContainer />
     </section>
     <section class="mini-card-container-2">
-      <MiniCardContainer sectionTitle="NEW COMMUNITY DEALS" />
+      <NewPublicDealsContainer />
     </section>
   </main>
 </template>
@@ -20,14 +20,15 @@ import MiniCardContainer from '@/components/MiniCardContainer.vue'
 import RecentDealsContainer from '@/components/RecentDealsContainer.vue'
 import SideNavComp from '../components/SideNavComp.vue'
 import TopOfPageComp from '@/components/TopOfPageComp.vue'
+import NewPublicDealsContainer from '@/components/NewPublicDealsContainer.vue'
 
 export default {
   name: 'HomeView',
   components: {
     SideNavComp,
     TopOfPageComp,
-    MiniCardContainer,
-    RecentDealsContainer
+    RecentDealsContainer,
+    NewPublicDealsContainer
   }
 }
 </script>
@@ -43,6 +44,7 @@ export default {
     'side-nav-comp mini-card-container-1'
     'side-nav-comp mini-card-container-2';
   width: 100%;
+  height: 100%;
 }
 
 .side-nav-comp {

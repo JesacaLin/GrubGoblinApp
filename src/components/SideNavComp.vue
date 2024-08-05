@@ -2,7 +2,11 @@
   <main id="side-nav">
     <section>
       <img src="../assets/logo-1.png" alt="site logo" />
-      <h1>Hi!</h1>
+      <div>
+        <h1>Hi!</h1>
+        <h1>{{ userName }}</h1>
+      </div>
+
       <div>
         <i class="bi bi-house"></i>
         <span>Dashboard</span>
@@ -26,8 +30,16 @@
 </template>
 
 <script>
+import store from '../store/index'
+
 export default {
-  name: 'SideNavComp'
+  name: 'SideNavComp',
+
+  data() {
+    return {
+      userName: store.state.userName
+    }
+  }
 }
 </script>
 
@@ -37,7 +49,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+  height: 100%;
   padding: 2rem;
 }
 

@@ -1,13 +1,13 @@
 <template>
-  <MiniCardContainer :deals="deals" sectionTitle="YOUR RECENT DEALS" />
+  <MiniCardContainer :deals="deals" sectionTitle="NEW COMMUNITY DEALS" />
 </template>
 
 <script>
-import { getRecentDeals } from '../service/DataService'
+import { getPublicDeals } from '../service/DataService'
 import MiniCardContainer from '../components/MiniCardContainer.vue'
 
 export default {
-  name: 'RecentDealsContainer',
+  name: 'NewPublicDealsContainer',
 
   components: {
     MiniCardContainer
@@ -20,18 +20,18 @@ export default {
   },
 
   methods: {
-    async fetchRecentDeals() {
+    async fetchPublicDeals() {
       try {
-        const data = await getRecentDeals()
+        const data = await getPublicDeals()
         this.deals = data
       } catch (error) {
-        console.error('Error fetching recent deals:', error)
+        console.error('Error fetching public deals:', error)
       }
     }
   },
 
   mounted() {
-    this.fetchRecentDeals()
+    this.fetchPublicDeals()
   }
 }
 </script>

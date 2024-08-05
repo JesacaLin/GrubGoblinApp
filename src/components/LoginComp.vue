@@ -19,6 +19,8 @@
 
 <script>
 import supabase from '../service/SupabaseService'
+// import store from '../store/index'
+import { useStore } from 'vuex'
 
 export default {
   name: 'LoginComp',
@@ -28,6 +30,10 @@ export default {
       email: '',
       password: ''
     }
+  },
+  setup() {
+    const store = useStore()
+    return { store }
   },
   methods: {
     async handleLogin() {
@@ -39,6 +45,35 @@ export default {
         console.error('Error signing in:', error.message)
       } else {
         console.log('Successfully signed in:', data)
+
+        // Log the entire response to check for the token
+        console.log('Full response:', data)
+
+        const token = data.session.access_token
+        const userEmail = data.user.email
+
+        //need to fetch info from the app_user table b/c the auth_user table doesn't have this info...
+        let { data: userInfo, error: userInfoError } = await supabase
+          .from('app_user')
+          .select('username, user_role')
+          .eq('email', userEmail)
+          .single()
+
+        if (userInfoError) {
+          console.error('Error fetching user info:', userInfoError.message)
+        } else {
+          const userName = userInfo.username
+          const roles = userInfo.user_role
+
+          this.store.commit('SET_LOGIN_INFO', { token, userEmail, userName, roles })
+          // console.log('Login information successfully saved to store:', {
+          //   token,
+          //   userEmail,
+          //   userName,
+          //   roles
+          // })
+        }
+
         // routerLink to HomeView
         this.$router.push({ name: 'HomeView' })
       }

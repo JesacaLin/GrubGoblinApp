@@ -42,13 +42,13 @@ export default {
 
 main > .container-body {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   padding: 2rem;
   gap: 1rem;
   border: black solid 1px;
   height: 20rem;
   border-radius: 30px;
-  max-width: 100%;
+  width: 100%;
   /* overflow-x: auto; */
 }
 

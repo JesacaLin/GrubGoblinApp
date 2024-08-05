@@ -1,5 +1,5 @@
 <template>
-  <main class="grid-container">
+  <main id="grid-container">
     <section class="hero-img">
       <HeroImageComp />
     </section>
@@ -26,7 +26,7 @@ export default {
 }
 </script>
 <style scoped>
-.grid-container {
+#grid-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto auto;
@@ -34,6 +34,8 @@ export default {
   grid-template-areas:
     'hero-img auth-options'
     'perks-container perks-container';
+  padding: 2rem 10rem 1rem 10rem;
+  height: 100%;
 }
 
 .hero-img {
@@ -47,8 +49,4 @@ export default {
 .perks-container {
   grid-area: perks-container;
 }
-
-/* section {
-  border: solid 1px black;
-} */
 </style>
