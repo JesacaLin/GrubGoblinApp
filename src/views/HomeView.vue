@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import MiniCardContainer from '@/components/MiniCardContainer.vue'
 import RecentDealsContainer from '@/components/RecentDealsContainer.vue'
 import SideNavComp from '../components/SideNavComp.vue'
 import TopOfPageComp from '@/components/TopOfPageComp.vue'
@@ -36,15 +35,15 @@ export default {
 <style scoped>
 #home-view {
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr 7fr;
   grid-template-rows: auto;
   gap: 1rem;
   grid-template-areas:
     'side-nav-comp top-of-page-comp'
     'side-nav-comp mini-card-container-1'
     'side-nav-comp mini-card-container-2';
-  width: 100%;
-  height: 100%;
+  /* max-width: 90%; */
+  height: 100vh;
 }
 
 .side-nav-comp {

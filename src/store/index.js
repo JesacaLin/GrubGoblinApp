@@ -18,18 +18,26 @@ const store = createStore({
       state.userRoles = roles
 
       console.log('SET_LOGIN_INFO mutation called with:', { token, userEmail, userName, roles })
-      console.log('Updated state:', state)
     },
     CLEAR_LOGIN_INFO(state) {
-      state.token = null
-      state.userEmail = null
-      state.userName = null
+      state.token = ''
+      state.userEmail = ''
+      state.userName = ''
       state.userRoles = []
 
+      localStorage.removeItem('store')
+
       console.log('CLEAR_LOGIN_INFO mutation called')
-      console.log('Updated state:', state)
     }
   },
+
+  getters: {
+    isAuthenticated: (state) => !!state.token,
+    getUserEmail: (state) => state.userEmail,
+    getUserName: (state) => state.userName,
+    getUserRoles: (state) => state.userRoles
+  },
+
   plugins: [localStoragePlugin]
 })
 

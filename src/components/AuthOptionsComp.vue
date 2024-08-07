@@ -1,7 +1,7 @@
 <template>
   <main id="auth-options">
     <img src="../assets/logo-1.png" alt="site logo" />
-    <h5>Just your friendly neighborhood</h5>
+    <h2>Just your friendly neighborhood</h2>
     <h1>Grub Goblin</h1>
     <p>
       Discover the ultimate hack for enjoying delicious food without breaking the bank. Our platform
@@ -56,6 +56,7 @@ export default {
   flex-direction: column;
   align-items: center;
   gap: 1.2rem;
+  padding: 0 5rem;
 }
 
 img {
@@ -67,10 +68,11 @@ h5 {
 }
 
 h1 {
-  font-size: 3.5rem;
+  font-size: 4rem;
 }
 
 p {
+  font-size: 1.2rem;
   text-align: center;
 }
 

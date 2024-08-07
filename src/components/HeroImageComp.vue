@@ -12,6 +12,6 @@ main {
   text-align: center;
 }
 img {
-  width: 70%;
+  max-width: 33rem;
 }
 </style>

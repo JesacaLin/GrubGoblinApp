@@ -19,7 +19,6 @@
 
 <script>
 import supabase from '../service/SupabaseService'
-// import store from '../store/index'
 import { useStore } from 'vuex'
 
 export default {
@@ -66,12 +65,6 @@ export default {
           const roles = userInfo.user_role
 
           this.store.commit('SET_LOGIN_INFO', { token, userEmail, userName, roles })
-          // console.log('Login information successfully saved to store:', {
-          //   token,
-          //   userEmail,
-          //   userName,
-          //   roles
-          // })
         }
 
         // routerLink to HomeView

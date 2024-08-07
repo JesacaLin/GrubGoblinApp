@@ -34,7 +34,9 @@ export default {
   grid-template-areas:
     'hero-img auth-options'
     'perks-container perks-container';
-  padding: 2rem 10rem 1rem 10rem;
+  padding: 3rem 10rem 1rem 10rem;
+  margin-left: auto;
+  margin-right: auto;
   height: 100%;
 }
 

@@ -4,7 +4,8 @@
       <img src="../assets/logo-1.png" alt="site logo" />
       <div>
         <h1>Hi!</h1>
-        <h1>{{ userName }}</h1>
+        <!-- TODO styling this doesn't seem to work -->
+        <h1 id="userName">{{ userName }}</h1>
       </div>
 
       <div>
@@ -21,7 +22,7 @@
       </div>
     </section>
     <section>
-      <div>
+      <div @click="handleLogout" id="logout">
         <i class="bi bi-door-open"></i>
         <span>Logout</span>
       </div>
@@ -30,14 +31,20 @@
 </template>
 
 <script>
-import store from '../store/index'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'SideNavComp',
 
-  data() {
-    return {
-      userName: store.state.userName
+  computed: {
+    ...mapGetters({
+      userName: 'getUserName'
+    })
+  },
+  methods: {
+    handleLogout() {
+      this.$store.commit('CLEAR_LOGIN_INFO')
+      this.$router.push({ name: 'Auth' })
     }
   }
 }
@@ -51,6 +58,9 @@ export default {
   justify-content: space-between;
   height: 100%;
   padding: 2rem;
+}
+#logout {
+  cursor: pointer;
 }
 
 main > section {

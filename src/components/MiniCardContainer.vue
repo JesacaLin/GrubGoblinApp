@@ -46,10 +46,9 @@ main > .container-body {
   padding: 2rem;
   gap: 1rem;
   border: black solid 1px;
-  height: 20rem;
+  height: 22rem;
   border-radius: 30px;
   width: 100%;
-  /* overflow-x: auto; */
 }
 
 main > .section-title {
