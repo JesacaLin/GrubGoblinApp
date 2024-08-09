@@ -59,7 +59,6 @@ export default {
     },
 
     async handleSignUp() {
-      // Sign up the user in the auth.users table
       let { data: signUpData, error } = await supabase.auth.signUp({
         email: this.email,
         password: this.password
@@ -71,7 +70,6 @@ export default {
 
       console.log('Sign up data:', signUpData)
 
-      // Insert the username into the app_user table
       const { data: insertData, error: insertError } = await supabase
         .from('app_user')
         .insert([{ email: this.email, username: this.username, user_role: 'contributor' }])
@@ -83,14 +81,12 @@ export default {
 
         console.log('Sign in data:', signInData)
 
-        // Emit close event to close the sign-up modal
         this.$emit('close')
 
         //TODO --> Ok, what if I take out the router? the sign up window will still close. Maybe the routing is disrupting the flow.
         // Route to Auth view
         // this.$router.push({ name: 'Auth' })
 
-        // Show the email verification modal
         this.showEmailV = true
       }
     }
@@ -101,10 +97,12 @@ export default {
 <style scoped>
 main {
   position: relative;
+  text-align: center;
+  padding-bottom: 2rem;
 }
 
 img {
-  width: 10%;
+  width: 15%;
   padding: 10px;
 }
 
@@ -125,5 +123,9 @@ input {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+h1 {
+  padding-bottom: 1rem;
 }
 </style>

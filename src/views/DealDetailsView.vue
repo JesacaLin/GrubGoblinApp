@@ -1,48 +1,41 @@
 <template>
-  <main id="home-view">
+  <main id="deal-detail-view">
     <section class="side-nav-comp">
       <SideNavComp />
     </section>
     <section class="top-of-page-comp">
       <TopOfPageComp />
     </section>
-    <section class="mini-card-container-1">
-      <RecentDealsContainer />
-    </section>
-    <section class="mini-card-container-2">
-      <NewPublicDealsContainer />
+    <section class="deal-detail-container">
+      <CardDetailsComp />
     </section>
   </main>
 </template>
 
 <script>
-import RecentDealsContainer from '@/components/RecentDealsContainer.vue'
 import SideNavComp from '../components/SideNavComp.vue'
 import TopOfPageComp from '@/components/TopOfPageComp.vue'
-import NewPublicDealsContainer from '@/components/NewPublicDealsContainer.vue'
+import CardDetailsComp from '@/components/CardDetailsComp.vue'
 
 export default {
-  name: 'HomeView',
+  name: 'DealDetailsView',
   components: {
     SideNavComp,
     TopOfPageComp,
-    RecentDealsContainer,
-    NewPublicDealsContainer
+    CardDetailsComp
   }
 }
 </script>
 
 <style scoped>
-#home-view {
+#deal-detail-view {
   display: grid;
   grid-template-columns: 1fr 7fr;
   grid-template-rows: auto;
   gap: 1rem;
   grid-template-areas:
     'side-nav-comp top-of-page-comp'
-    'side-nav-comp mini-card-container-1'
-    'side-nav-comp mini-card-container-2';
-
+    'side-nav-comp deal-detail-container';
   height: 100vh;
 }
 
@@ -54,11 +47,7 @@ export default {
   grid-area: top-of-page-comp;
 }
 
-.mini-card-container-1 {
-  grid-area: mini-card-container-1;
-}
-
-.mini-card-container-2 {
-  grid-area: mini-card-container-2;
+.deal-detail-container {
+  grid-area: deal-detail-container;
 }
 </style>

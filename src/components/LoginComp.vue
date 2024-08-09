@@ -67,7 +67,6 @@ export default {
           this.store.commit('SET_LOGIN_INFO', { token, userEmail, userName, roles })
         }
 
-        // routerLink to HomeView
         this.$router.push({ name: 'HomeView' })
       }
     }
@@ -78,10 +77,12 @@ export default {
 <style scoped>
 main {
   position: relative;
+  text-align: center;
+  padding-bottom: 2rem;
 }
 
 img {
-  width: 10%;
+  width: 15%;
   padding: 10px;
 }
 
@@ -102,5 +103,9 @@ input {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+h1 {
+  padding-bottom: 1rem;
 }
 </style>

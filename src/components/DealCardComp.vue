@@ -1,5 +1,5 @@
 <template>
-  <main id="deal-card">
+  <main id="deal-card" @click="navigateToDetails">
     <section class="deal-map"></section>
     <section class="deal-preview">
       <h1>{{ deal.place.place_name }}</h1>
@@ -18,6 +18,12 @@ export default {
       type: Object,
       required: true
     }
+  },
+  methods: {
+    navigateToDetails() {
+      this.$emit('navigate', this.deal.deal_id)
+      console.log(`Inside DealCardComp: this is the deal id: ${this.deal.deal_id}`)
+    }
   }
 }
 </script>
@@ -27,6 +33,7 @@ export default {
   border: 1px solid #ccc;
   border-radius: 30px;
   width: 20rem;
+  cursor: pointer;
 }
 
 .deal-map {

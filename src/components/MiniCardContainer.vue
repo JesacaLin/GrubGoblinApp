@@ -5,7 +5,12 @@
       <button>Show All ></button>
     </section>
     <section class="container-body">
-      <DealCardComp v-for="deal in deals" :key="deal.id" :deal="deal" />
+      <DealCardComp
+        v-for="deal in deals"
+        :key="deal.deal_id"
+        :deal="deal"
+        @navigate="goToDealDetails"
+      />
     </section>
   </main>
 </template>
@@ -19,7 +24,6 @@ export default {
   components: {
     DealCardComp
   },
-
   props: {
     deals: {
       type: Array,
@@ -28,6 +32,13 @@ export default {
     sectionTitle: {
       type: String,
       required: true
+    }
+  },
+
+  methods: {
+    goToDealDetails(dealId) {
+      this.$router.push({ name: 'DealDetails', params: { dealId } })
+      console.log(`Inside miniCardContainer. pushing this dealId:`, dealId)
     }
   }
 }
@@ -46,7 +57,9 @@ main > .container-body {
   padding: 2rem;
   gap: 1rem;
   border: black solid 1px;
-  height: 22rem;
+  min-height: 22rem;
+  /* TODO ----> do I need this??? */
+  max-height: 100%;
   border-radius: 30px;
   width: 100%;
 }

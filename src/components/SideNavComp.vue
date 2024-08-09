@@ -8,21 +8,21 @@
         <h1 id="userName">{{ userName }}</h1>
       </div>
 
-      <div>
+      <div @click="goToDashboard" class="cursor">
         <i class="bi bi-house"></i>
         <span>Dashboard</span>
       </div>
-      <div>
+      <div class="cursor">
         <i class="bi bi-suit-heart"></i>
         <span>My Deals</span>
       </div>
-      <div>
+      <div class="cursor">
         <i class="bi bi-people"></i>
         <span>Community Deals</span>
       </div>
     </section>
     <section>
-      <div @click="handleLogout" id="logout">
+      <div @click="handleLogout" class="cursor">
         <i class="bi bi-door-open"></i>
         <span>Logout</span>
       </div>
@@ -45,6 +45,9 @@ export default {
     handleLogout() {
       this.$store.commit('CLEAR_LOGIN_INFO')
       this.$router.push({ name: 'Auth' })
+    },
+    goToDashboard() {
+      this.$router.push({ name: 'HomeView' })
     }
   }
 }
@@ -59,7 +62,7 @@ export default {
   height: 100%;
   padding: 2rem;
 }
-#logout {
+.cursor {
   cursor: pointer;
 }
 
