@@ -7,7 +7,7 @@
       <TopOfPageComp />
     </section>
     <section class="deal-detail-container">
-      <CardDetailsComp />
+      <CardDetailsComp :deal="deal" v-if="deal" />
     </section>
   </main>
 </template>
@@ -16,6 +16,7 @@
 import SideNavComp from '../components/SideNavComp.vue'
 import TopOfPageComp from '@/components/TopOfPageComp.vue'
 import CardDetailsComp from '@/components/CardDetailsComp.vue'
+import { fetchDealById } from '../service/DataService'
 
 export default {
   name: 'DealDetailsView',
@@ -23,6 +24,27 @@ export default {
     SideNavComp,
     TopOfPageComp,
     CardDetailsComp
+  },
+  data() {
+    return {
+      deal: null
+    }
+  },
+
+  methods: {
+    async fetchDealById(dealId) {
+      try {
+        const data = await fetchDealById(dealId)
+        this.deal = data
+      } catch (error) {
+        console.error('Error fetching deal by id', error)
+      }
+    }
+  },
+
+  created() {
+    const id = this.$route.params.dealId
+    this.fetchDealById(id)
   }
 }
 </script>

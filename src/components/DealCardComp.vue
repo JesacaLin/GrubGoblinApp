@@ -22,7 +22,6 @@ export default {
   methods: {
     navigateToDetails() {
       this.$emit('navigate', this.deal.deal_id)
-      console.log(`Inside DealCardComp: this is the deal id: ${this.deal.deal_id}`)
     }
   }
 }

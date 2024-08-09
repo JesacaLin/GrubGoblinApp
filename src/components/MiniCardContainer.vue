@@ -38,7 +38,6 @@ export default {
   methods: {
     goToDealDetails(dealId) {
       this.$router.push({ name: 'DealDetails', params: { dealId } })
-      console.log(`Inside miniCardContainer. pushing this dealId:`, dealId)
     }
   }
 }
