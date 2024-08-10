@@ -1,7 +1,7 @@
 <template>
   <main>
-    <img src="/src/assets/logo-1.png" alt="site logo" />
-    <h1>Welcome!</h1>
+    <img src="/src/assets/logo-1.png" alt="site logo" class="logo-in-modal" />
+    <h1>Welcome! 🥰</h1>
     <button class="close-button" @click="$emit('close')">X</button>
     <form @submit.prevent="handleSignUp">
       <div>
@@ -95,16 +95,6 @@ export default {
 <style scoped>
 main {
   position: relative;
-  text-align: center;
-  padding-bottom: 2rem;
-}
-
-img {
-  width: 15%;
-  padding: 10px;
-}
-
-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -115,12 +105,15 @@ form {
 div {
   display: flex;
   flex-direction: column;
+  padding: 0.5rem;
 }
 
-input {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  gap: 1rem;
 }
 
 h1 {

@@ -1,7 +1,11 @@
 <template>
-  <main id="a-deal-comp">
-    <img src="/src/assets/logo-1.png" alt="site logo" />
-    <h1>Add a deal to your collection!</h1>
+  <main>
+    <img src="/src/assets/logo-1.png" alt="site logo" class="logo-in-modal" />
+    <h1 v-if="dealAdded">
+      Deal added! 🥳 <br />
+      Do you want to add another one?
+    </h1>
+    <h1 v-else>Add a deal to your collection! 🤤</h1>
     <button class="close-button" @click="$emit('close')">X</button>
     <form @submit.prevent="handleAddDeal">
       <div>
@@ -13,7 +17,7 @@
         <input type="text" id="address" name="address" v-model="address" required />
       </div>
       <div>
-        <label for="dealCategory">Type of Food: </label>
+        <label for="dealCategory">Type of Deal: </label>
         <select v-model="dealCategory">
           <option value="food">Food</option>
           <option value="drinks">Drinks</option>
@@ -28,23 +32,23 @@
       <div class="availability">
         <label>Availability:</label>
         <div>
-          <input type="checkbox" id="monday" value="monday" v-model="availability" />
+          <input type="checkbox" id="monday" value="Monday" v-model="availability" />
           <label for="monday">Mon</label>
         </div>
         <div>
-          <input type="checkbox" id="tuesday" value="tuesday" v-model="availability" />
+          <input type="checkbox" id="tuesday" value="Tuesday" v-model="availability" />
           <label for="tuesday">Tue</label>
         </div>
         <div>
-          <input type="checkbox" id="wednesday" value="wednesday" v-model="availability" />
+          <input type="checkbox" id="wednesday" value="Wednesday" v-model="availability" />
           <label for="wednesday">Wed</label>
         </div>
         <div>
-          <input type="checkbox" id="thursday" value="thursday" v-model="availability" />
+          <input type="checkbox" id="thursday" value="Thursday" v-model="availability" />
           <label for="thursday">Thu</label>
         </div>
         <div>
-          <input type="checkbox" id="friday" value="friday" v-model="availability" />
+          <input type="checkbox" id="friday" value="Friday" v-model="availability" />
           <label for="friday">Fri</label>
         </div>
         <div>
@@ -52,16 +56,16 @@
           <label for="Saturday">Sat</label>
         </div>
         <div>
-          <input type="checkbox" id="Sunday" value="sunday" v-model="availability" />
+          <input type="checkbox" id="Sunday" value="Sunday" v-model="availability" />
           <label for="sunday">Sun</label>
         </div>
       </div>
       <div>
-        <label for="startTime">Start Time: </label>
+        <label for="startTime">Start Time: (11:00 AM)</label>
         <input type="time" id="startTime" v-model="startTime" required />
       </div>
       <div>
-        <label for="endTime">End Time: </label>
+        <label for="endTime">End Time: (5:00 PM)</label>
         <input type="time" id="endTime" v-model="endTime" required />
       </div>
       <div class="flex-checkbox">
@@ -78,8 +82,10 @@
     </form>
   </main>
 </template>
+
 <script>
-// import supabase from '@/service/SupabaseService'
+import { mapGetters } from 'vuex'
+import supabase from '@/service/SupabaseService'
 
 export default {
   name: 'AddADealComp',
@@ -94,9 +100,17 @@ export default {
       startTime: '',
       endTime: '',
       allDay: false,
-      isPublic: false
+      isPublic: false,
+      dealAdded: false
     }
   },
+
+  computed: {
+    ...mapGetters({
+      userEmail: 'getUserEmail'
+    })
+  },
+
   methods: {
     handleAllDayChange() {
       if (this.allDay) {
@@ -104,29 +118,77 @@ export default {
         this.endTime = ''
       }
     },
-    async handleAddDeal() {
-      // const { data, error } = await supabase
-      // .from('app_user')
-      // .insert([])
-      // .select()
 
-      console.log(
-        this.placeName,
-        this.address,
-        this.dealCategory,
-        this.description,
-        this.availability,
-        this.startTime,
-        this.endTime,
-        this.allDay,
-        this.isPublic
-      )
+    //TODO -> need to manually add (lat, long, google rating) for now until googl api is hooked up
+    async handleAddDeal() {
+      try {
+        const { data: placeData, error: placeError } = await supabase
+          .from('place')
+          .insert([
+            {
+              place_name: this.placeName,
+              address: this.address,
+              latitude: null,
+              longitude: null,
+              google_rating: null
+            }
+          ])
+          .select()
+
+        if (placeError) {
+          throw placeError
+        }
+
+        const placeId = placeData[0].place_id
+
+        console.log(`Place added successfully: ${placeData}, id: ${placeId}`)
+
+        const { data: dealData, error: dealError } = await supabase
+          .from('deal')
+          .insert([
+            {
+              place_id: placeId,
+              type_of_deal: this.dealCategory,
+              deal_description: this.description,
+              days_of_week: this.availability,
+              start_time: this.startTime,
+              end_time: this.endTime,
+              is_all_day: this.allDay,
+              created_by: this.userEmail,
+              is_public: this.isPublic
+            }
+          ])
+          .select()
+
+        if (dealError) {
+          throw dealError
+        }
+
+        console.log(`Deal added successfully: ${dealData}`)
+        this.clearForm()
+        this.dealAdded = true
+      } catch (error) {
+        console.error('Ughhh error inserting data:', error)
+      }
+    },
+
+    clearForm() {
+      this.placeName = ''
+      this.address = ''
+      this.dealCategory = ''
+      this.description = ''
+      this.availability = ''
+      this.startTime = ''
+      this.endTime = ''
+      this.allDay = false
+      this.isPublic = false
     }
   }
 }
 </script>
 <style scoped>
-#a-deal-comp {
+main {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -140,7 +202,7 @@ div {
   padding: 0.5rem;
 }
 
-img {
+.logo-in-modal {
   width: 15%;
   padding: 10px;
 }
@@ -156,5 +218,9 @@ img {
   flex-direction: row;
   align-items: center;
   gap: 0.8rem;
+}
+
+h1 {
+  text-align: center;
 }
 </style>

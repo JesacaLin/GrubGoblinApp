@@ -5,7 +5,7 @@
     </section>
     <section class="deal-preview">
       <h1>{{ deal.place.place_name }}</h1>
-      <h5>{{ deal.days_of_week }}</h5>
+      <h5>{{ convertArray }}</h5>
       <p class="fade-out">Description: {{ deal.deal_description }}</p>
     </section>
   </main>
@@ -51,6 +51,13 @@ export default {
       console.log(this.imageURL)
     }
   },
+
+  computed: {
+    convertArray() {
+      return this.deal.days_of_week.join(', ')
+    }
+  },
+
   created() {
     this.imageSelector()
   }
@@ -61,7 +68,7 @@ export default {
 #deal-card {
   border: 1px solid #ccc;
   border-radius: 30px;
-  width: 20rem;
+  width: 20.5rem;
   cursor: pointer;
 }
 

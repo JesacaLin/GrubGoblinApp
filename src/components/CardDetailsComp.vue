@@ -6,6 +6,7 @@
       <button>Directions</button>
     </section>
     <section class="right-top">
+      <button>+ Review</button>
       <button>Update</button>
       <button>Delete</button>
       <i class="bi bi-suit-heart"></i>
@@ -13,7 +14,7 @@
     <section class="right-middle">
       <h1>{{ deal.place.place_name }}</h1>
       <h3>Type: {{ deal.type_of_deal }}</h3>
-      <h3>Availability: {{ deal.days_of_week }}</h3>
+      <h3>Availability: {{ convertArray }}</h3>
       <h3>Start Time: {{ deal.start_time }}</h3>
       <h3>End time: {{ deal.end_time }}</h3>
       <h3>Description: {{ deal.deal_description }}</h3>
@@ -38,6 +39,11 @@ export default {
       type: Object,
       required: true
     }
+  },
+  computed: {
+    convertArray() {
+      return this.deal.days_of_week.join(', ')
+    }
   }
 }
 </script>
@@ -51,7 +57,7 @@ export default {
   gap: 1rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr 2fr 2fr;
+  grid-template-rows: 0.3fr 2fr 2fr;
   grid-template-areas:
     'left right-top'
     'left right-middle'
