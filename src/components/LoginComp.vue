@@ -45,8 +45,7 @@ export default {
       } else {
         console.log('Successfully signed in:', data)
 
-        // Log the entire response to check for the token
-        console.log('Full response:', data)
+        console.log('Check for token:', data)
 
         const token = data.session.access_token
         const userEmail = data.user.email

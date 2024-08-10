@@ -45,15 +45,6 @@ export async function fetchDealById(dealId) {
   if (error) throw error
   if (data.length == 0) throw 'not found'
   return data[0]
-
-  // const deal = data[0]
-  // deal.review = deal.review.filter((review) => review.reviewed_by === user.userEmail)
-
-  // if (deal.review.length === 1) {
-  //   deal.review = deal.review[0]
-  // }
-
-  // return deal
 }
 
 export async function getPublicDeals() {

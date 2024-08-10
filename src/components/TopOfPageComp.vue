@@ -8,15 +8,37 @@
       <button type="button">Locate Me!</button>
     </section>
     <section>
-      <button type="button">+ Deal</button>
+      <button type="button" @click="showAddDeal = true">+ Deal</button>
       <i class="bi bi-person-circle"></i>
     </section>
+    <div v-if="showAddDeal" class="modal-backdrop" @click="closeModal">
+      <div class="modal" @click.stop>
+        <AddADealComp @close="closeModal" />
+      </div>
+    </div>
   </main>
 </template>
 
 <script>
+import AddADealComp from './AddADealComp.vue'
+
 export default {
-  name: 'TopOfPageComp'
+  name: 'TopOfPageComp',
+
+  components: {
+    AddADealComp
+  },
+
+  data() {
+    return {
+      showAddDeal: false
+    }
+  },
+  methods: {
+    closeModal() {
+      this.showAddDeal = false
+    }
+  }
 }
 </script>
 

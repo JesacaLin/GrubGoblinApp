@@ -41,7 +41,6 @@ export default {
       }
     }
   },
-
   created() {
     const id = this.$route.params.dealId
     this.fetchDealById(id)
@@ -53,7 +52,7 @@ export default {
 #deal-detail-view {
   display: grid;
   grid-template-columns: 1fr 7fr;
-  grid-template-rows: auto;
+  grid-template-rows: 1fr 5fr;
   gap: 1rem;
   grid-template-areas:
     'side-nav-comp top-of-page-comp'
@@ -71,5 +70,6 @@ export default {
 
 .deal-detail-container {
   grid-area: deal-detail-container;
+  padding: 0 3rem 3rem 2rem;
 }
 </style>

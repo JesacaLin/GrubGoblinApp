@@ -79,8 +79,6 @@ export default {
       } else {
         console.log('Successfully signed up and inserted into app_user:', insertData)
 
-        console.log('Sign in data:', signInData)
-
         this.$emit('close')
 
         //TODO --> Ok, what if I take out the router? the sign up window will still close. Maybe the routing is disrupting the flow.
