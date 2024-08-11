@@ -19,6 +19,7 @@
       <div>
         <label for="dealCategory">Type of Deal: </label>
         <select v-model="dealCategory">
+          <option value="blank">-----</option>
           <option value="food">Food</option>
           <option value="drinks">Drinks</option>
           <option value="groceries">Groceries</option>
@@ -62,11 +63,11 @@
       </div>
       <div>
         <label for="startTime">Start Time: (11:00 AM)</label>
-        <input type="time" id="startTime" v-model="startTime" required />
+        <input type="time" id="startTime" v-model="startTime" />
       </div>
       <div>
         <label for="endTime">End Time: (5:00 PM)</label>
-        <input type="time" id="endTime" v-model="endTime" required />
+        <input type="time" id="endTime" v-model="endTime" />
       </div>
       <div class="flex-checkbox">
         <label for="allDay">Is the deal available all day?</label>
@@ -114,8 +115,8 @@ export default {
   methods: {
     handleAllDayChange() {
       if (this.allDay) {
-        this.startTime = ''
-        this.endTime = ''
+        this.startTime = null
+        this.endTime = null
       }
     },
 
@@ -143,6 +144,8 @@ export default {
 
         console.log(`Place added successfully: ${placeData}, id: ${placeId}`)
 
+        const endTime = this.endTime === '' ? null : this.endTime
+
         const { data: dealData, error: dealError } = await supabase
           .from('deal')
           .insert([
@@ -152,7 +155,7 @@ export default {
               deal_description: this.description,
               days_of_week: this.availability,
               start_time: this.startTime,
-              end_time: this.endTime,
+              end_time: endTime,
               is_all_day: this.allDay,
               created_by: this.userEmail,
               is_public: this.isPublic
@@ -167,6 +170,8 @@ export default {
         console.log(`Deal added successfully: ${dealData}`)
         this.clearForm()
         this.dealAdded = true
+        // forcing a reload does not seem to Worker...
+        this.$router.replace({ name: 'HomeView' })
       } catch (error) {
         console.error('Ughhh error inserting data:', error)
       }

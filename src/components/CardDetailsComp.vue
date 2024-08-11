@@ -14,9 +14,10 @@
     <section class="right-middle">
       <h1>{{ deal.place.place_name }}</h1>
       <h3>Type: {{ deal.type_of_deal }}</h3>
-      <h3>Availability: {{ convertArray }}</h3>
-      <h3>Start Time: {{ deal.start_time }}</h3>
-      <h3>End time: {{ deal.end_time }}</h3>
+      <h3>Days Available: {{ convertArray }}</h3>
+      <h3 v-if="deal.start_time !== null">Start Time: {{ deal.start_time }}</h3>
+      <h3 v-if="deal.end_time !== null">End time: {{ deal.end_time }}</h3>
+      <h3 v-else>Time: Available all day!</h3>
       <h3>Description: {{ deal.deal_description }}</h3>
     </section>
     <section class="right-bottom">
