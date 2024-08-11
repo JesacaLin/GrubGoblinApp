@@ -14,8 +14,8 @@
 
 <script>
 import SideNavComp from '../components/SideNavComp.vue'
-import TopOfPageComp from '@/components/TopOfPageComp.vue'
-import CardDetailsComp from '@/components/CardDetailsComp.vue'
+import TopOfPageComp from '../components/TopOfPageComp.vue'
+import CardDetailsComp from '../components/CardDetailsComp.vue'
 import { fetchDealById } from '../service/DataService'
 
 export default {

@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import RecentDealsContainer from '@/components/RecentDealsContainer.vue'
+import RecentDealsContainer from '../components/RecentDealsContainer.vue'
 import SideNavComp from '../components/SideNavComp.vue'
-import TopOfPageComp from '@/components/TopOfPageComp.vue'
-import NewPublicDealsContainer from '@/components/NewPublicDealsContainer.vue'
+import TopOfPageComp from '../components/TopOfPageComp.vue'
+import NewPublicDealsContainer from '../components/NewPublicDealsContainer.vue'
 
 export default {
   name: 'HomeView',

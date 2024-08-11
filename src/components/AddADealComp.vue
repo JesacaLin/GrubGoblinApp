@@ -142,7 +142,7 @@ export default {
 
         const placeId = placeData[0].place_id
 
-        console.log(`Place added successfully: ${placeData}, id: ${placeId}`)
+        console.log(`Place added: ${placeData}, id: ${placeId}`)
 
         const endTime = this.endTime === '' ? null : this.endTime
 
@@ -167,10 +167,11 @@ export default {
           throw dealError
         }
 
-        console.log(`Deal added successfully: ${dealData}`)
+        console.log(`Deal added: ${dealData}`)
         this.clearForm()
         this.dealAdded = true
-        // forcing a reload does not seem to Worker...
+
+        //  TODO forcing a reload does not seem to Work...
         this.$router.replace({ name: 'HomeView' })
       } catch (error) {
         console.error('Ughhh error inserting data:', error)

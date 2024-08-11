@@ -1,6 +1,6 @@
 <template>
   <main id="auth-options">
-    <img src="../assets/logo-1.png" alt="site logo" />
+    <img src="../assets/logo-1.png" alt="site logo" class="hide-on-mobile" />
     <h2>Just your friendly neighborhood</h2>
     <h1>Grub Goblin</h1>
     <p>
@@ -60,7 +60,7 @@ export default {
 }
 
 img {
-  width: 11%;
+  width: 5rem;
 }
 
 h5 {
@@ -84,5 +84,23 @@ p {
   margin: 0 10px;
   vertical-align: middle;
   margin: 1rem 1.7rem;
+}
+
+@media only screen and (max-width: 1400px) {
+  #auth-options {
+    gap: 0.2rem;
+  }
+
+  .hide-on-mobile {
+    display: none;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  section {
+    padding-top: 1rem;
+  }
 }
 </style>

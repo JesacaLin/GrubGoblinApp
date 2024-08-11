@@ -61,7 +61,6 @@ export default {
     imageSelector() {
       let num = Math.floor(Math.random() * 11) + 1
       this.imageURL = images[num]
-      console.log(this.imageURL)
     }
   },
 

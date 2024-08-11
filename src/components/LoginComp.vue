@@ -1,7 +1,7 @@
 <template>
   <main>
     <img src="/src/assets/logo-1.png" alt="site logo" class="logo-in-modal" />
-    <h1>Hey, it's you again! 🥹</h1>
+    <h1>Hey, it's you again! 😃</h1>
     <button class="close-button" @click="$emit('close')">X</button>
     <form @submit.prevent="handleLogin">
       <div>
@@ -44,13 +44,11 @@ export default {
         console.error('Error signing in:', error.message)
       } else {
         console.log('Successfully signed in:', data)
-
         console.log('Check for token:', data)
 
         const token = data.session.access_token
         const userEmail = data.user.email
 
-        //need to fetch info from the app_user table b/c the auth_user table doesn't have this info...
         let { data: userInfo, error: userInfoError } = await supabase
           .from('app_user')
           .select('username, user_role')

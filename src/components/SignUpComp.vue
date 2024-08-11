@@ -81,7 +81,8 @@ export default {
 
         this.$emit('close')
 
-        //TODO --> Ok, what if I take out the router? the sign up window will still close. Maybe the routing is disrupting the flow.
+        //TODO --> the email verification message is does not show up. maybe onclick I use v-if and switch out the text + form in the existing modal, that's better for now.
+
         // Route to Auth view
         // this.$router.push({ name: 'Auth' })
 
