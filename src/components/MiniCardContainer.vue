@@ -52,19 +52,30 @@ export default {
 
 main > .container-body {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   padding: 2rem;
-  gap: 1rem;
+  gap: 1.5rem;
   border: black solid 1px;
-  min-height: 22rem;
-  /* TODO ----> do I need this??? */
-  max-height: 100%;
   border-radius: 30px;
-  width: 100%;
 }
 
 main > .section-title {
   display: flex;
   justify-content: space-between;
+}
+
+@media only screen and (max-width: 1400px) {
+  main > .container-body {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  main > .container-body {
+    flex-direction: column;
+  }
 }
 </style>

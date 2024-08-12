@@ -1,6 +1,9 @@
 <template>
   <main id="home-view">
-    <section class="side-nav-comp">
+    <section class="hide-on-desktop">
+      <TopOfPageMobileComp />
+    </section>
+    <section class="side-nav-comp hide-on-mobile">
       <SideNavComp />
     </section>
     <section class="top-of-page-comp">
@@ -20,6 +23,7 @@ import RecentDealsContainer from '../components/RecentDealsContainer.vue'
 import SideNavComp from '../components/SideNavComp.vue'
 import TopOfPageComp from '../components/TopOfPageComp.vue'
 import NewPublicDealsContainer from '../components/NewPublicDealsContainer.vue'
+import TopOfPageMobileComp from '../components/TopOfPageMobileComp.vue'
 
 export default {
   name: 'HomeView',
@@ -27,7 +31,8 @@ export default {
     SideNavComp,
     TopOfPageComp,
     RecentDealsContainer,
-    NewPublicDealsContainer
+    NewPublicDealsContainer,
+    TopOfPageMobileComp
   }
 }
 </script>
@@ -46,6 +51,10 @@ export default {
   height: 100vh;
 }
 
+.hide-on-desktop {
+  display: none;
+}
+
 .side-nav-comp {
   grid-area: side-nav-comp;
 }
@@ -60,5 +69,32 @@ export default {
 
 .mini-card-container-2 {
   grid-area: mini-card-container-2;
+}
+
+@media only screen and (max-width: 1400px) {
+}
+
+@media only screen and (max-width: 1000px) {
+  #home-view {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 1rem;
+    grid-template-areas:
+      'hide-on-desktop'
+      'top-of-page-comp'
+      'mini-card-container-1'
+      'mini-card-container-2';
+
+    height: 100vh;
+  }
+
+  .hide-on-desktop {
+    grid-area: hide-on-desktop;
+    display: block;
+  }
+
+  .hide-on-mobile {
+    display: none;
+  }
 }
 </style>

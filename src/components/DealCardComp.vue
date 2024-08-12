@@ -1,11 +1,11 @@
 <template>
   <main id="deal-card" @click="navigateToDetails">
     <section class="card-image-container">
-      <img :src="imageURL" alt="image of food" class="card-image" />
+      <img v-lazy="imageURL" alt="image of food" class="card-image" />
     </section>
     <section class="deal-preview">
       <h1>{{ deal.place.place_name }}</h1>
-      <h5>{{ convertArray }}</h5>
+      <h4>{{ convertArray }}</h4>
       <p class="fade-out">Description: {{ deal.deal_description }}</p>
     </section>
   </main>
@@ -18,25 +18,13 @@ import img2 from '../assets/2.png'
 import img3 from '../assets/3.png'
 import img4 from '../assets/4.png'
 import img5 from '../assets/5.png'
-import img6 from '../assets/6.png'
-import img7 from '../assets/7.png'
-import img8 from '../assets/8.png'
-import img9 from '../assets/9.png'
-import img10 from '../assets/10.png'
-import img11 from '../assets/11.png'
 
 const images = {
   1: img1,
   2: img2,
   3: img3,
   4: img4,
-  5: img5,
-  6: img6,
-  7: img7,
-  8: img8,
-  9: img9,
-  10: img10,
-  11: img11
+  5: img5
 }
 
 export default {
@@ -59,7 +47,7 @@ export default {
     },
 
     imageSelector() {
-      let num = Math.floor(Math.random() * 11) + 1
+      let num = Math.floor(Math.random() * 5) + 1
       this.imageURL = images[num]
     }
   },
@@ -80,7 +68,7 @@ export default {
 #deal-card {
   border: 1px solid #ccc;
   border-radius: 30px;
-  width: 20.5rem;
+  width: 45%;
   cursor: pointer;
 }
 
@@ -92,7 +80,7 @@ export default {
 }
 
 .deal-preview {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1rem 1rem 1rem;
 }
 
 TODO
@@ -101,5 +89,17 @@ TODO
 .fade-out {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@media only screen and (max-width: 1400px) {
+  .deal-preview {
+    padding-bottom: 2rem;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #deal-card {
+    width: 100%;
+  }
 }
 </style>

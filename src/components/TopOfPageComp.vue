@@ -1,21 +1,25 @@
 <template>
   <main id="top-of-page">
-    <section>
+    <section class="hide-on-mobile">
       <form action="/search" method="GET">
         <input type="text" name="query" id="input" placeholder="Search..." />
         <button type="submit">Search</button>
       </form>
       <button type="button">Locate Me!</button>
     </section>
-    <section>
+    <section class="add-deal-section">
       <button type="button" @click="showAddDeal = true">+ Deal</button>
-      <i class="bi bi-person-circle"></i>
+      <i class="bi bi-person-circle hide-on-mobile"></i>
     </section>
     <div v-if="showAddDeal" class="modal-backdrop" @click="closeModal">
       <div class="modal" @click.stop>
         <AddADealComp @close="closeModal" />
       </div>
     </div>
+    <section id="locate-me" class="locate-me hide-on-desktop">
+      <img src="../assets/locate-me-icon.png" alt="Locate me button" />
+      <button type="button">Locate Me!</button>
+    </section>
   </main>
 </template>
 
@@ -47,6 +51,11 @@ export default {
   display: flex;
   justify-content: space-between;
   padding: 2rem;
+  height: 100%;
+}
+
+.hide-on-desktop {
+  display: none;
 }
 
 section {
@@ -63,5 +72,20 @@ section {
 
 section > .bi {
   font-size: 1.8rem;
+}
+
+@media only screen and (max-width: 1000px) {
+  .hide-on-mobile,
+  .add-deal-section {
+    display: none;
+  }
+
+  .hide-on-desktop {
+    display: block;
+  }
+
+  #locate-me {
+    gap: 1rem;
+  }
 }
 </style>
