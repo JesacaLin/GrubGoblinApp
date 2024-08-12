@@ -49,6 +49,11 @@
 h1 {
   text-align: center;
   padding-bottom: 1rem;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: 1.3rem;
 }
 
 p {
