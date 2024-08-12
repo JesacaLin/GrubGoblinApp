@@ -51,7 +51,6 @@ export default {
   display: flex;
   justify-content: space-between;
   padding: 2rem;
-  height: 100%;
 }
 
 .hide-on-desktop {

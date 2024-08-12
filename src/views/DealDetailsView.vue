@@ -1,5 +1,8 @@
 <template>
   <main id="deal-detail-view">
+    <section class="mobile-top-nav hide-on-desktop">
+      <TopOfPageMobileComp />
+    </section>
     <section class="side-nav-comp">
       <SideNavComp />
     </section>
@@ -17,13 +20,15 @@ import SideNavComp from '../components/SideNavComp.vue'
 import TopOfPageComp from '../components/TopOfPageComp.vue'
 import CardDetailsComp from '../components/CardDetailsComp.vue'
 import { fetchDealById } from '../service/DataService'
+import TopOfPageMobileComp from '../components/TopOfPageMobileComp.vue'
 
 export default {
   name: 'DealDetailsView',
   components: {
     SideNavComp,
     TopOfPageComp,
-    CardDetailsComp
+    CardDetailsComp,
+    TopOfPageMobileComp
   },
   data() {
     return {
@@ -60,6 +65,10 @@ export default {
   height: 100vh;
 }
 
+.hide-on-desktop {
+  display: none;
+}
+
 .side-nav-comp {
   grid-area: side-nav-comp;
 }
@@ -71,5 +80,26 @@ export default {
 .deal-detail-container {
   grid-area: deal-detail-container;
   padding: 0 3rem 3rem 2rem;
+}
+
+@media only screen and (max-width: 1000px) {
+  #deal-detail-view {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 5fr;
+    gap: 1rem;
+    grid-template-areas:
+      'mobile-top-nav'
+      'deal-detail-container';
+    height: 100vh;
+  }
+
+  .hide-on-desktop {
+    display: block;
+  }
+
+  .side-nav-comp,
+  .top-of-page-comp {
+    display: none;
+  }
 }
 </style>

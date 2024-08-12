@@ -9,10 +9,16 @@
       <button>+ Review</button>
       <button>Update</button>
       <button>Delete</button>
-      <i class="bi bi-suit-heart"></i>
+      <i class="bi bi-suit-heart hide-on-mobile"></i>
     </section>
     <section class="right-middle">
-      <h1>{{ deal.place.place_name }}</h1>
+      <div class="place-title">
+        <h1>
+          {{ deal.place.place_name }}
+        </h1>
+        <i class="bi bi-suit-heart hide-on-desktop"></i>
+      </div>
+
       <h3>Type: {{ deal.type_of_deal }}</h3>
       <h3>Days Available: {{ convertArray }}</h3>
       <h3 v-if="deal.start_time !== null">Start Time: {{ deal.start_time }}</h3>
@@ -90,6 +96,10 @@ export default {
   grid-area: right-bottom;
 }
 
+.hide-on-desktop {
+  display: none;
+}
+
 img {
   width: 85%;
   border-radius: 30px;
@@ -105,5 +115,36 @@ h1 {
 
 .bi {
   font-size: 2rem;
+}
+
+@media only screen and (max-width: 1000px) {
+  #card-details {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr 1fr 0.2fr;
+    grid-template-areas:
+      'right-middle'
+      'left'
+      'right-bottom'
+      'right-top';
+  }
+  img {
+    width: 100%;
+  }
+  .place-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .right-top {
+    justify-content: center;
+  }
+
+  .hide-on-mobile {
+    display: none;
+  }
+  .hide-on-desktop {
+    display: inline-block;
+  }
 }
 </style>

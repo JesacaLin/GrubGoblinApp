@@ -16,10 +16,10 @@
 }
 
 img {
-  width: 3.5rem;
+  width: 3rem;
   height: 100%;
 }
 .bi {
-  font-size: 3.5rem;
+  font-size: 3rem;
 }
 </style>
