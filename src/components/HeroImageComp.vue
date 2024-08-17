@@ -14,4 +14,10 @@ main {
 img {
   max-width: 33rem;
 }
+
+img:hover {
+  animation: var(--animation-spin) forwards;
+  animation-timing-function: var(--ease-elastic-in-out-2);
+  animation-duration: 2.5s;
+}
 </style>

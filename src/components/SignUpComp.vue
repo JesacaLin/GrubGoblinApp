@@ -18,7 +18,7 @@
           type="text"
           id="password"
           name="password"
-          placeholder="At least 6 characters"
+          placeholder="At least 6 characters..."
           v-model="password"
           required
         />

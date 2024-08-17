@@ -3,8 +3,7 @@
     <section>
       <img src="../assets/logo-1.png" alt="site logo" />
       <div>
-        <h1>Hi!</h1>
-        <!-- TODO styling this doesn't seem to work -->
+        <h1>👋</h1>
         <h1 id="userName">{{ userName }}</h1>
       </div>
 
@@ -55,22 +54,29 @@ export default {
 
 <style scoped>
 #side-nav {
-  background-color: lightgray;
+  /* background-image: var(--gradient-15); */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  border-right: 2px solid #0b1215;
   padding: 2rem;
 }
 .cursor {
   cursor: pointer;
+}
+.cursor:hover {
+  background-image: var(--gradient-15);
+  width: 10rem;
+  padding: 1rem;
+  border-radius: 20px;
 }
 
 main > section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.5rem;
+  gap: 2.7rem;
 }
 
 section > div {
@@ -91,5 +97,13 @@ div > .bi {
 span {
   font-size: 1rem;
   text-align: center;
+}
+
+#userName {
+  font-size: 1.3rem;
+}
+
+h1 {
+  font-size: 2rem;
 }
 </style>

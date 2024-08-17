@@ -2,7 +2,7 @@
   <main>
     <img src="/src/assets/logo-1.png" alt="site logo" class="logo-in-modal" />
     <h1 v-if="dealAdded">
-      Deal added! 🥳 <br />
+      🎉 Deal added! 🥳 <br />
       Do you want to add another one?
     </h1>
     <h1 v-else>Add a deal to your collection! 🤤</h1>

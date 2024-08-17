@@ -6,11 +6,16 @@
     <section class="side-nav-comp">
       <SideNavComp />
     </section>
+    <section class="mobile-nav-comp hide-on-desktop">
+      <MobileNavComp />
+    </section>
     <section class="top-of-page-comp">
       <TopOfPageComp />
     </section>
     <section class="deal-detail-container">
-      <CardDetailsComp :deal="deal" v-if="deal" />
+      <CardDetailsComp v-if="showDetails" :deal="deal" />
+      <!-- <CardDetailsComp v-if="showDetails" :deal="deal" @show-map="handleShowMap" />
+      <MapsComp v-if="showMapComp" :address="address" /> -->
     </section>
   </main>
 </template>
@@ -21,6 +26,7 @@ import TopOfPageComp from '../components/TopOfPageComp.vue'
 import CardDetailsComp from '../components/CardDetailsComp.vue'
 import { fetchDealById } from '../service/DataService'
 import TopOfPageMobileComp from '../components/TopOfPageMobileComp.vue'
+import MobileNavComp from '../components/MobileNavComp.vue'
 
 export default {
   name: 'DealDetailsView',
@@ -28,11 +34,15 @@ export default {
     SideNavComp,
     TopOfPageComp,
     CardDetailsComp,
-    TopOfPageMobileComp
+    TopOfPageMobileComp,
+    MobileNavComp
   },
   data() {
     return {
-      deal: null
+      deal: {},
+      showDetails: true,
+      // showMapComp: false,
+      address: ''
     }
   },
 
@@ -45,6 +55,12 @@ export default {
         console.error('Error fetching deal by id', error)
       }
     }
+
+    // handleShowMap(address) {
+    //   this.address = address
+    //   this.showDetails = false
+    //   this.showMapComp = true
+    // }
   },
   created() {
     const id = this.$route.params.dealId
@@ -57,7 +73,7 @@ export default {
 #deal-detail-view {
   display: grid;
   grid-template-columns: 1fr 7fr;
-  grid-template-rows: 1fr 5fr;
+  grid-template-rows: 1fr 7fr;
   gap: 1rem;
   grid-template-areas:
     'side-nav-comp top-of-page-comp'
@@ -80,6 +96,7 @@ export default {
 .deal-detail-container {
   grid-area: deal-detail-container;
   padding: 0 3rem 3rem 2rem;
+  padding-bottom: 6rem;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -100,6 +117,10 @@ export default {
   .side-nav-comp,
   .top-of-page-comp {
     display: none;
+  }
+
+  .deal-detail-container {
+    padding-bottom: 10rem;
   }
 }
 </style>

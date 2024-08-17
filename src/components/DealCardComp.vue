@@ -6,7 +6,7 @@
     <section class="deal-preview">
       <h1>{{ deal.place.place_name }}</h1>
       <h4>{{ convertArray }}</h4>
-      <p class="fade-out">Description: {{ deal.deal_description }}</p>
+      <p class="fade-out">{{ deal.deal_description }}</p>
     </section>
   </main>
 </template>
@@ -18,13 +18,15 @@ import img2 from '../assets/2.png'
 import img3 from '../assets/3.png'
 import img4 from '../assets/4.png'
 import img5 from '../assets/5.png'
+import img6 from '../assets/6.png'
 
 const images = {
   1: img1,
   2: img2,
   3: img3,
   4: img4,
-  5: img5
+  5: img5,
+  6: img6
 }
 
 export default {
@@ -47,7 +49,7 @@ export default {
     },
 
     imageSelector() {
-      let num = Math.floor(Math.random() * 5) + 1
+      let num = Math.floor(Math.random() * 6) + 1
       this.imageURL = images[num]
     }
   },
@@ -66,10 +68,15 @@ export default {
 
 <style scoped>
 #deal-card {
-  border: 1px solid #ccc;
   border-radius: 30px;
   width: 45%;
   cursor: pointer;
+  box-shadow: var(--shadow-3);
+}
+
+#deal-card:hover {
+  box-shadow: var(--shadow-4);
+  /* animation: var(--animation-scale-up); */
 }
 
 .card-image {
@@ -89,6 +96,14 @@ TODO
 .fade-out {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+h1 {
+  font-size: 1.2rem;
+}
+
+h4 {
+  font-size: 0.9rem;
 }
 
 @media only screen and (max-width: 1400px) {

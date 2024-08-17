@@ -21,6 +21,26 @@ export async function getRecentDeals() {
   return data
 }
 
+export async function getPublicDeals() {
+  const user = store.state
+  const { data, error } = await supabase
+    .from('deal')
+    .select(
+      `
+    *,
+    place (
+      place_name
+    )
+  `
+    )
+    .eq('is_public', true)
+    .neq('created_by', user.userEmail)
+    .order('created_at', { ascending: false })
+    .limit(4)
+  if (error) throw error
+  return data
+}
+
 export async function fetchDealById(dealId) {
   const { data, error } = await supabase
     .from('deal')
@@ -45,24 +65,4 @@ export async function fetchDealById(dealId) {
   if (error) throw error
   if (data.length == 0) throw 'not found'
   return data[0]
-}
-
-export async function getPublicDeals() {
-  const user = store.state
-  const { data, error } = await supabase
-    .from('deal')
-    .select(
-      `
-    *,
-    place (
-      place_name
-    )
-  `
-    )
-    .eq('is_public', true)
-    .neq('created_by', user.userEmail)
-    .order('created_at', { ascending: false })
-    .limit(4)
-  if (error) throw error
-  return data
 }

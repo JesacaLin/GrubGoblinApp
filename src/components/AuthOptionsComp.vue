@@ -78,7 +78,7 @@ p {
 
 .line {
   display: inline-block;
-  width: 2px;
+  width: 2.5px;
   height: 50px;
   background-color: black;
   margin: 0 10px;

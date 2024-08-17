@@ -55,13 +55,14 @@ main > .container-body {
   justify-content: space-between;
   padding: 2rem;
   gap: 1.5rem;
-  border: black solid 1px;
+  border: #0b1215 solid 2px;
   border-radius: 30px;
 }
 
 main > .section-title {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 @media only screen and (max-width: 1400px) {

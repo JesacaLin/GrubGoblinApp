@@ -1,19 +1,35 @@
 @import './base.css';
+@import 'https://unpkg.com/open-props';
 
 #app {
   height: 100%;
   font-weight: normal;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial,
     sans-serif;
+  /* snow */
+  background-color: #fffafa;
+  /* ghost white */
+  /* background-color: #f8f8ff; */
+  /* alice blue */
+  /* background-color: #f0f8ff; */
+  color: #0b1215;
 }
 
 button {
-  padding: 10px 30px;
+  padding: 7px 28px;
   border-radius: 30px;
-  border: none;
-  background-color: black;
+  background-color: #0b1215;
   color: white;
+  box-shadow: var(--shadow-2);
   cursor: pointer;
+}
+
+button:hover {
+  /* background: linear-gradient(45deg, #ee6560, #faab94, #fceac7); */
+  /* background: linear-gradient(45deg, #f5fecc, #fadcda, #fbbde8); */
+  border: none;
+  background-image: var(--gradient-15);
+  color: #0b1215;
 }
 
 .close-button {
@@ -25,12 +41,8 @@ button {
   font-size: 25px;
   font-weight: 700;
   cursor: pointer;
-  color: black;
+  color: #0b1215;
 }
-
-/* button:hover {
-  background: linear-gradient(45deg, #ee6560, #faab94, #fceac7);
-} */
 
 .modal-backdrop {
   position: fixed;
@@ -54,10 +66,4 @@ button {
 .logo-in-modal {
   width: 15%;
   padding: 10px;
-}
-
-input {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
 }
